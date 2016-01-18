@@ -14,7 +14,6 @@ def testDelete():
     deletePlayers()
     print "2. Player records can be deleted."
 
-
 def testCount():
     deleteMatches()
     deletePlayers()
@@ -87,6 +86,7 @@ def testReportMatches():
     registerPlayer("Cathy Burton")
     registerPlayer("Diane Grant")
     standings = playerStandings()
+    print [row[0] for row in standings]
     [id1, id2, id3, id4] = [row[0] for row in standings]
     reportMatch(id1, id2)
     reportMatch(id3, id4)
@@ -99,7 +99,6 @@ def testReportMatches():
         elif i in (id2, id4) and w != 0:
             raise ValueError("Each match loser should have zero wins recorded.")
     print "7. After a match, players have updated standings."
-
 
 def testPairings():
     deleteMatches()

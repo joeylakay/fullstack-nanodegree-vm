@@ -6,4 +6,25 @@
 -- You can write comments in this file by starting them with two dashes, like
 -- these lines here.
 
+-- Create database "tournament" and connect to that database before creating tables
+\c vagrant
+DROP DATABASE IF EXISTS tournament;
+CREATE DATABASE tournament;
+\c tournament
+DROP TABLE IF EXISTS standings;
+DROP TABLE IF EXISTS matches;
+DROP TABLE IF EXISTS players;
+
+
+CREATE TABLE players (id SERIAL primary key, name TEXT);
+
+
+CREATE TABLE matches (match_id SERIAL primary key, winner INT references players(id), loser INT references players(id));
+
+
+CREATE TABLE standings as SELECT id, name, (SELECT count(*) as wins FROM matches WHERE matches.winner = players.id), ((SELECT count(*) as wins FROM matches WHERE matches.winner = players.id)+ (SELECT count(*) as losses FROM matches WHERE matches.loser = players.id)) AS total FROM players order by wins DESC;
+
+
+
+
 
