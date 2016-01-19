@@ -37,7 +37,7 @@ The forum project is for testing the vagrant development environment.
   - tournament.sql​iswherewe'llcreateourdatabaseschemaandviews;wealsohave the option of creating the database and tables in this file.
   - With psql, you can run any SQL query on the tables of the currently connected database.
   - When using psql, remember to end SQL statements with a semicolon, which is not always required from Python.
-  - To build and access the database we run ```psql``` followed by ```\itournament.sql``
+  - To build and access the database we run ```psql``` followed by ```\i tournament.sql```
 
 
 
