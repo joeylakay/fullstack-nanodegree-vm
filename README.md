@@ -39,5 +39,23 @@ The forum project is for testing the vagrant development environment.
   - When using psql, remember to end SQL statements with a semicolon, which is not always required from Python.
   - To build and access the database we run ```psql``` followed by ```\i tournament.sql```
 
+#####Running your project!
+Once you have your .sql and .py files set up, it’s a good idea to test them out against the testing file provided to you (tournament_test.py). To run the series of tests defined in this test suite, run the program from the command line `>> pythontournament_test`
+```
+if__name__=='__main__': testDeleteMatches()
+testDelete()
+testCount()
+testRegister() testRegisterCountDelete() testStandingsBeforeMatches() testReportMatches() testPairings()
+print"Success! Alltestspass!"
+```
+
+And you should be able to see the following output once all your tests have passed:
+
+```
+vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$python tournament_test.py
+1.Oldmatchescanbedeleted.
+2.Playerrecordscanbedeleted. 3.Afterdeleting,countPlayers()returnszero. 4.Afterregisteringaplayer,countPlayers()returns1. 5.Playerscanberegisteredanddeleted. 6.Newlyregisteredplayersappearinthestandingswithnomatches. 7.Afteramatch,playershaveupdatedstandings. 8.Afteronematch,playerswithonewinarepaired.
+Success! Alltestspass! vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$
+```
 
 
