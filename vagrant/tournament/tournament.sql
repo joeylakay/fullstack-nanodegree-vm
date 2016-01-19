@@ -11,18 +11,15 @@
 DROP DATABASE IF EXISTS tournament;
 CREATE DATABASE tournament;
 \c tournament
-DROP TABLE IF EXISTS standings;
-DROP TABLE IF EXISTS matches;
-DROP TABLE IF EXISTS players;
 
 
 CREATE TABLE players (id SERIAL primary key, name TEXT);
 
 
-CREATE TABLE matches (match_id SERIAL primary key, winner INT references players(id), loser INT references players(id));
+CREATE TABLE matches (match_id SERIAL primary key, winner INT references players(id), loser INT references players(id)) ON DELETE CASCADE;
 
 
-CREATE TABLE standings as SELECT id, name, (SELECT count(*) as wins FROM matches WHERE matches.winner = players.id), ((SELECT count(*) as wins FROM matches WHERE matches.winner = players.id)+ (SELECT count(*) as losses FROM matches WHERE matches.loser = players.id)) AS total FROM players order by wins DESC;
+CREATE VIEW standings as SELECT id, name, (SELECT count(*) as wins FROM matches WHERE matches.winner = players.id), ((SELECT count(*) as wins FROM matches WHERE matches.winner = players.id)+ (SELECT count(*) as losses FROM matches WHERE matches.loser = players.id)) AS total FROM players order by wins DESC;
 
 
 
